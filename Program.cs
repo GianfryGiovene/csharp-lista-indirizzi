@@ -17,7 +17,7 @@ Console.WriteLine(fileRead.ReadLine());
 
 
 List<Address> addresses = new List<Address>();
-
+List<Address> invalidAddresses = new List<Address>();
 
 while (!fileRead.EndOfStream)
 {
@@ -34,15 +34,31 @@ while (!fileRead.EndOfStream)
     catch (IndexOutOfRangeException)
     {
         address = new Address();
-        Console.WriteLine("Non Lo salvo");
+        invalidAddresses.Add(address);
+        Console.WriteLine("Lo salvo altrove");
     }
     
     
 }
+fileRead.Close();
 
-foreach (Address address in addresses)
+try
 {
-    address.ShowAddress();
+    string path = @"D:\Documenti\Coding\Corso_Experis\Esercizi\csharp-lista-indirizzi\newAddresses.csv";
+    if (!File.Exists(path))
+    {
+        StreamWriter newFile = File.CreateText(@"D:\Documenti\Coding\Corso_Experis\Esercizi\csharp-lista-indirizzi\newAddresses.csv");
+        foreach (Address address in addresses)
+        {
+            
+            newFile.WriteLine(address.ShowAddress());
 
+        }
+        newFile.Close();
+    }
+}
+catch(Exception e)
+{
+    Console.WriteLine(e.Message);
 }
 

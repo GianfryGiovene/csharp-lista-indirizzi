@@ -28,9 +28,9 @@ namespace csharp_lista_indirizzi
         }
         public Address() { }
 
-        public void ShowAddress()
+        public string ShowAddress()
         {
-            Console.Write("\n--- Indirizzo ---\nNome {0}\nCognome {1}\nIndirizzo {2}\nCittà {3}\nProvincia {4}\n ZipCode {5}\n--------------");
+            return $"\n---- Indirizzo ----\nNome {Name}\nCognome {Surname}\nIndirizzo {Street}\nCittà {City}\nProvincia {Province}\n ZipCode {Zip}\n--------------";
         }
     }
 }
